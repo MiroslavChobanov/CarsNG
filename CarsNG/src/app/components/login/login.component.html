@@ -1,0 +1,18 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form>
+      <div class="input-container">
+        <label>Name:</label>
+        <input [(ngModel)]="user.username" placeholder="Name" name="username">
+      </div>
+      <div class="input-container">
+        <label>Password:</label>
+        <input [(ngModel)]="user.password" placeholder="Password" type="password" name="password">
+      </div>
+      <div class="btn-container">
+        <button (click)="login(user)">Login</button>
+        <button (click)="getme()">Get Me</button>
+      </div>
+    </form>
+  </div>
+  

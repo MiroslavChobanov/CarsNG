@@ -1,0 +1,44 @@
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+.navbar a:hover {
+  background-color: #555;
+  border-radius: 3px;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; /* Light color for the logo text */
+}
+
+.navbar .auth-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .auth-links button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.navbar .auth-links button:hover {
+  background-color: #555;
+  border-radius: 3px;
+}

@@ -1,0 +1,99 @@
+<div *ngIf="car">
+    <h2>{{ car.make }}</h2>
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+      <div>
+        Make:
+        <input type="text" formControlName="make" placeholder="Make" />
+        <div *ngIf="carForm.get('make')?.invalid && (carForm.get('make')?.dirty || carForm.get('make')?.touched)">
+            <div *ngIf="carForm.get('make')?.errors?.['required']">Make is required.</div>
+            <div *ngIf="carForm.get('make')?.errors?.['minlength']">Make must have at least 2 characters.</div>
+          </div>
+      </div>
+      <div>
+        Model:
+        <input type="text" formControlName="model" placeholder="Model" />
+        <div *ngIf="carForm.get('model')?.invalid && (carForm.get('model')?.dirty || carForm.get('model')?.touched)">
+            <div *ngIf="carForm.get('model')?.errors?.['required']">Model is required.</div>
+            <div *ngIf="carForm.get('model')?.errors?.['minlength']">Model must have at least 2 characters.</div>
+          </div>
+      </div>
+      <div>
+        Price:
+        <input type="number" formControlName="price" placeholder="Price" />
+        <div *ngIf="carForm.get('price')?.invalid && (carForm.get('price')?.dirty || carForm.get('price')?.touched)">
+            <div *ngIf="carForm.get('price')?.errors?.['required']">Price is required.</div>
+            <div *ngIf="carForm.get('price')?.errors?.['min']">Price must be at least 500.</div>
+          </div>
+      </div>
+      <div>
+        Mileage:
+        <input type="number" formControlName="mileage" placeholder="Mileage" />
+        <div *ngIf="carForm.get('mileage')?.invalid && (carForm.get('mileage')?.dirty || carForm.get('mileage')?.touched)">
+            <div *ngIf="carForm.get('mileage')?.errors?.['required']">Mileage is required.</div>
+            <div *ngIf="carForm.get('mileage')?.errors?.['min']">Mileage must be at least 1000.</div>
+          </div>
+      </div>
+      <div>
+        Category:
+        <input type="text" formControlName="category" placeholder="Category" />
+        <div *ngIf="carForm.get('category')?.invalid && (carForm.get('category')?.dirty || carForm.get('category')?.touched)">
+            <div *ngIf="carForm.get('category')?.errors?.['minlength']">Category must have at least 3 characters.</div>
+          </div>
+      </div>
+      <div>
+        Number of Doors:
+        <input type="number" formControlName="numberOfDoors" placeholder="Number of Doors" />
+        <div *ngIf="carForm.get('numberOfDoors')?.invalid && (carForm.get('numberOfDoors')?.dirty || carForm.get('numberOfDoors')?.touched)">
+            <div *ngIf="carForm.get('numberOfDoors')?.errors?.['required']">Number of Doors is required.</div>
+            <div *ngIf="carForm.get('numberOfDoors')?.errors?.['min']">Number of Doors must be at least 2.</div>
+          </div>
+      </div>
+      <div>
+        Fuel Type:
+        <input type="text" formControlName="fuelType" placeholder="Fuel Type" />
+        <div *ngIf="carForm.get('fuelType')?.invalid && (carForm.get('fuelType')?.dirty || carForm.get('fuelType')?.touched)">
+            <div *ngIf="carForm.get('fuelType')?.errors?.['minlength']">Fuel Type must have at least 3 characters.</div>
+          </div>
+      </div>
+      <div>
+        Year of Creation:
+        <input type="number" formControlName="yearOfCreation" placeholder="Year of Creation" />
+        <div *ngIf="carForm.get('yearOfCreation')?.invalid && (carForm.get('yearOfCreation')?.dirty || carForm.get('yearOfCreation')?.touched)">
+            <div *ngIf="carForm.get('yearOfCreation')?.errors?.['required']">Year of Creation is required.</div>
+            <div *ngIf="carForm.get('yearOfCreation')?.errors?.['min']">Year of Creation must be at least 1960.</div>
+            <div *ngIf="carForm.get('yearOfCreation')?.errors?.['max']">Year of Creation cannot be in the future.</div>
+          </div>
+      </div>
+      <div>
+        Color:
+        <input type="text" formControlName="color" placeholder="Color" />
+        <div *ngIf="carForm.get('color')?.invalid && (carForm.get('color')?.dirty || carForm.get('color')?.touched)">
+            <div *ngIf="carForm.get('color')?.errors?.['minlength']">Color must have at least 3 characters.</div>
+          </div>
+      </div>
+      <div>
+        Horsepower:
+        <input type="number" formControlName="horsepower" placeholder="Horsepower" />
+        <div *ngIf="carForm.get('horsepower')?.invalid && (carForm.get('horsepower')?.dirty || carForm.get('horsepower')?.touched)">
+            <div *ngIf="carForm.get('horsepower')?.errors?.['required']">Horsepower is required.</div>
+            <div *ngIf="carForm.get('horsepower')?.errors?.['min']">Horsepower must be at least 40.</div>
+          </div>
+      </div>
+      <div>
+        Place:
+        <input type="text" formControlName="place" placeholder="Place" />
+        <div *ngIf="carForm.get('place')?.invalid && (carForm.get('place')?.dirty || carForm.get('place')?.touched)">
+            <div *ngIf="carForm.get('place')?.errors?.['required']">Place is required.</div>
+            <div *ngIf="carForm.get('place')?.errors?.['minlength']">Place must have at least 1 character.</div>
+          </div>
+      </div>
+      Phone:
+        <input type="text" formControlName="phone" placeholder="Phone" />
+        <div *ngIf="carForm.get('phone')?.invalid && (carForm.get('phone')?.dirty || carForm.get('phone')?.touched)">
+            <div *ngIf="carForm.get('phone')?.errors?.['required']">Phone is required.</div>
+            <div *ngIf="carForm.get('phone')?.errors?.['minlength']">Phone must have at least 1 character.</div>
+          </div>
+      <button type="submit" [disabled]="carForm.invalid && (carForm.dirty || carForm.touched)">Save</button>
+      <button type="button" (click)="deleteCar(car)" *ngIf="car.id">Delete</button>
+    </form>
+  </div>
