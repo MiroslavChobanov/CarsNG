@@ -1,0 +1,51 @@
+<div class="car-details-container" *ngIf="carDetails">
+    <div class="car-title">
+        <h2>{{ carDetails.make }} {{ carDetails.model }}</h2>
+    </div>
+    <div class="car-details-row">
+        <div class="car-detail">
+            <label class="detail-label">Price: </label>
+            <p class="detail-value">{{ carDetails.price | currency }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Mileage: </label>
+            <p class="detail-value">{{ carDetails.mileage | number }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Category: </label>
+            <p class="detail-value">{{ carDetails.category }}</p>
+        </div>
+    </div>
+    <div class="car-details-row">
+        <div class="car-detail">
+            <label class="detail-label">Number of Doors: </label>
+            <p class="detail-value">{{ carDetails.numberOfDoors }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Fuel Type: </label>
+            <p class="detail-value">{{ carDetails.fuelType }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Year of Creation: </label>
+            <p class="detail-value">{{ carDetails.yearOfCreation }}</p>
+        </div>
+    </div>
+    <div class="car-details-row">
+        <div class="car-detail">
+            <label class="detail-label">Color: </label>
+            <p class="detail-value">{{ carDetails.color }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Horsepower: </label>
+            <p class="detail-value">{{ carDetails.horsepower }}</p>
+        </div>
+        <div class="car-detail">
+            <label class="detail-label">Place: </label>
+            <p class="detail-value">{{ carDetails.place }}</p>
+        </div>
+    </div>
+    <div class="car-details-description">
+        <label class="detail-label"><b>Description: </b></label>
+        <p class="detail-value">{{ carDetails.description }}</p>
+    </div>
+</div>

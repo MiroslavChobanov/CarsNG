@@ -42,6 +42,9 @@
         <td>{{ car.place }}</td>
         <td>{{ car.phone }}</td>
         <td><button (click)="editCar(car)">Edit</button></td>
+        <td>
+          <button *ngIf="car.id !== undefined" (click)="navigateToDetails(car.id)">Details</button>
+        </td>        
       </tr>
       </ng-container>
     </tbody>

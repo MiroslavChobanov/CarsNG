@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Car } from 'src/app/models/car';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent {
   sortDirection: number = 1;
   sortOrder = 'asc';
 
-  constructor(private carService: CarService, private authService: AuthService){}
+  constructor(private carService: CarService, private authService: AuthService, private router: Router){}
 
   ngOnInit() : void {
     this.carService
@@ -36,6 +37,10 @@ export class HomeComponent {
     .subscribe((result: Car[]) => (this.cars = result));
 
   }
+
+  navigateToDetails(carId: number) {
+    this.router.navigate(['/car-details', carId]);
+}
 
   updateCarList(cars: Car[]) {
     this.cars = cars;

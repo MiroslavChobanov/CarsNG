@@ -22,5 +22,6 @@ namespace CarsAPI
         public int Horsepower { get; set; }
         public string Place { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
     }
 }

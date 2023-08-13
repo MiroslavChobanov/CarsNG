@@ -50,10 +50,10 @@ namespace CarsAPI.Controllers
             dbCar.Horsepower = car.Horsepower;
             dbCar.Place = car.Place;
             dbCar.Phone = car.Phone;
+            dbCar.Description= car.Description;
 
 
             await _context.SaveChangesAsync();
-            qweqwe
             return Ok(await _context.Cars.ToListAsync());
         }
 
@@ -72,6 +72,19 @@ namespace CarsAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Cars.ToListAsync());
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Car>> GetCar(int id)
+        {
+            var car = await _context.Cars.FindAsync(id);
+
+            if (car == null)
+            {
+                return NotFound();
+            }
+
+            return car;
         }
     }
 }
