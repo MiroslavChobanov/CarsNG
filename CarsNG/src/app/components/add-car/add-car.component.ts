@@ -1,18 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'app-edit-car',
-  templateUrl: './edit-car.component.html',
-  styleUrls: ['./edit-car.component.css']
+  selector: 'app-add-car',
+  templateUrl: './add-car.component.html',
+  styleUrls: ['./add-car.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('1000ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
-export class EditCarComponent implements OnInit {
+export class AddCarComponent {
   @Input() car?: Car;
   @Output() carsUpdated = new EventEmitter<Car[]>();
-
   carForm: FormGroup;
+  showSuccessMessage: boolean = false;
 
   constructor(private carService: CarService, private fb: FormBuilder) {
     this.carForm = this.fb.group({
@@ -28,42 +37,24 @@ export class EditCarComponent implements OnInit {
       horsepower: [0, [Validators.required, Validators.min(40)]],
       place: ['', [Validators.minLength(5)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      description: ['', [Validators.minLength(20)]]
+      description: ['', [Validators.required, Validators.minLength(20)]]
     });
   }
-
-  ngOnInit(): void {
-    if (this.car) {
-      this.carForm.patchValue(this.car);
-    }
-  }
-
+  
   onSubmit() {
     if (this.carForm.valid) {
       const updatedCar: Car = {
         ...this.car!,
         ...this.carForm.value
       };
-  
-      if (this.car && this.car.id) {
-        this.updateCar(updatedCar);
-      } else {
         this.createCar(updatedCar);
-      }
+
+        this.showSuccessMessage = true;
+        this.carForm.reset();
     }
-  }
-
-  updateCar(car: Car) {
-    this.carService.updateCar(car).subscribe(
-      (cars: Car[]) => this.carsUpdated.emit(cars),
-      error => console.error('Error updating car:', error)
-    );
-  }
-
-  deleteCar(car: Car) {
-    this.carService
-      .deleteCar(car)
-      .subscribe((cars: Car[]) => this.carsUpdated.emit(cars));
+    else{
+      this.showSuccessMessage = false;
+    }
   }
 
   createCar(car: Car) {

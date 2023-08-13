@@ -10,6 +10,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddCarComponent } from './components/add-car/add-car.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { HomeComponent } from './components/home/home.component';
     EditCarComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AddCarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {

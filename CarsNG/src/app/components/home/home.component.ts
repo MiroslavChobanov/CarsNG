@@ -3,11 +3,20 @@ import { CarService } from 'src/app/services/car.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Car } from 'src/app/models/car';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('600ms', style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class HomeComponent {
   title = 'AngApp.UI';
@@ -17,6 +26,7 @@ export class HomeComponent {
   searchTerm: string = '';
   sortColumn: string = '';
   sortDirection: number = 1;
+  sortOrder = 'asc';
 
   constructor(private carService: CarService, private authService: AuthService){}
 
@@ -60,5 +70,29 @@ export class HomeComponent {
     this.cars.sort((a, b) =>
       a[property] > b[property] ? this.sortDirection : -this.sortDirection
     );
+  }
+
+  sort(property: string) {
+    if (property === 'price') {
+      if (this.sortOrder === 'asc') {
+        this.cars.sort((a, b) => a.price - b.price);
+      } else {
+        this.cars.sort((a, b) => b.price - a.price);
+      }
+    } else {
+      // Handle other properties for sorting
+    }
+  }
+
+  onSortChange(value: string) {
+    if (value === 'lowestPrice') {
+      this.sortOrder = 'asc';
+      this.sort('price');
+    } else if (value === 'highestPrice') {
+      this.sortOrder = 'desc';
+      this.sort('price');
+    } else {
+      // Handle default or other sorting options
+    }
   }
 }

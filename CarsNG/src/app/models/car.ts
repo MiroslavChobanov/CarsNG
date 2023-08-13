@@ -2,7 +2,7 @@ export class Car {
     id?: number;
     make = "";
     model = "";
-    plateNumber = ""; 
+    plateNumber? = ""; 
     price = 0;
     mileage = 0;
     category = "";
@@ -13,5 +13,6 @@ export class Car {
     horsepower = 0;
     place = "";
     phone = "";
+    description = "";
     [key: string]: any;
 }

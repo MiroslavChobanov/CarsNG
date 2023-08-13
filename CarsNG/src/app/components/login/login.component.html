@@ -10,7 +10,7 @@
         <input [(ngModel)]="user.password" placeholder="Password" type="password" name="password">
       </div>
       <div class="btn-container">
-        <button (click)="login(user)">Login</button>
+        <button [@fadeIn] (click)="login(user)">Login</button>
         <button (click)="getme()">Get Me</button>
       </div>
     </form>

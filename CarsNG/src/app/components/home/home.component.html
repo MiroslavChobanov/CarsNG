@@ -1,9 +1,17 @@
 <div class="search-container">
-    <button (click)="initNewCar()">Create new car</button>
     <input type="text" [(ngModel)]="searchTerm" placeholder="Search by Make" />
+    <div>
+        Sort by:
+        <select #sortSelect (change)="onSortChange(sortSelect.value)">
+          <option value="default">Default</option>
+          <option value="lowestPrice">Lowest Price</option>
+          <option value="highestPrice">Highest Price</option>
+        </select>
+      </div>
+      
   </div>
   
-  <table>
+  <table [@fadeIn]>
     <thead>
       <th>Make</th>
       <th>Model</th>

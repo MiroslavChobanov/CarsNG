@@ -1,0 +1,87 @@
+
+div {
+    width: 250px;
+    margin: 0 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: unset;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  /* Styles for error messages */
+  
+  
+  /* Styles for submit button */
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Styles for submit button when disabled */
+  button[type="submit"]:disabled {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+  }
+  
+  /* Styles for form field grouping */
+  .first-column > div, .second-column > div, .third-column > div, .forth-column > div {
+    margin-bottom: 15px;
+    background-color: #fcca89;
+    color: #ffffff;
+    font-size: 20px;
+  }
+
+  .form-fields{
+    display: flex;
+    border: unset;
+  }
+
+  .second-column, .third-column, .forth-column{
+    margin-left: 40px;
+    border: unset;
+  }
+
+  .error-message {
+    color: #ffffff;
+    font-size: 18px;
+    margin-top: 5px;
+  }
+  .error-message > div{
+    background-color: red;
+  }
+
+  .forth-column > div > input{
+    height: 150px;
+  }
+
+  .success-message {
+    color: green;
+    margin-top: 10px;
+    font-size: 18px;
+    }
+
+    .fail-message{
+    color: red;
+    margin-top: 10px;
+    font-size: 18px;
+    }
