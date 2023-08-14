@@ -7,6 +7,7 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class AuthService {
+  private isLoggedIn: boolean = false;
   constructor(private http: HttpClient) {}
 
   public register(user: User): Observable<any> {
@@ -26,5 +27,18 @@ export class AuthService {
     return this.http.get('https://localhost:7113/api/Auth', {
       responseType: 'text',
     });
+  }
+
+  setLoggedInStatus(status: boolean) {
+    this.isLoggedIn = status;
+  }
+
+  isUserLoggedIn(): boolean {
+    return this.isLoggedIn;
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    this.setLoggedInStatus(false);
   }
 }

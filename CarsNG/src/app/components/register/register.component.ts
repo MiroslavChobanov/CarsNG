@@ -23,8 +23,11 @@ export class RegisterComponent {
   constructor(private authService: AuthService){}
   
   register(user: User) {
-    this.authService.register(user).subscribe();
+    this.authService.register(user).subscribe((response: any) => {
+      console.log(response);
+    });
   }
+  
 
   login(user: User) {
     this.authService.login(user).subscribe((token: string) => {

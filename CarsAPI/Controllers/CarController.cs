@@ -51,6 +51,7 @@ namespace CarsAPI.Controllers
             dbCar.Place = car.Place;
             dbCar.Phone = car.Phone;
             dbCar.Description= car.Description;
+            dbCar.UserId = 1;
 
 
             await _context.SaveChangesAsync();

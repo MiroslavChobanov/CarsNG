@@ -33,24 +33,53 @@ namespace CarsAPI.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<User>> Register(UserDto request)
         {
+            User newUser = new User();
+
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            user.Username = request.Username;
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            newUser.Username = request.Username;
+            newUser.PasswordHash = passwordHash;
+            newUser.PasswordSalt = passwordSalt;
 
-            return Ok(user);
+            // Save the new user to the database using your UserService
+            var createdUser = await _userService.CreateAsync(newUser);
+
+            return Ok(createdUser); // Return the newly created user
         }
 
+
+        //[HttpPost("login")]
+        //public async Task<ActionResult<string>> Login(User request)
+        //{
+        //    if (user.Username != request.Username)
+        //    {
+        //        return BadRequest("User not found.");
+        //    }
+
+        //    if (!VerifyPasswordHash(user.PasswordHash, user.PasswordSalt))
+        //    {
+        //        return BadRequest("Wrong password.");
+        //    }
+
+        //    string token = CreateToken(user);
+
+        //    var refreshToken = GenerateRefreshToken();
+        //    SetRefreshToken(refreshToken);
+
+        //    return Ok(token);
+        //}
+
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request)
+        public async Task<ActionResult<string>> Login([FromBody] UserDto loginRequest)
         {
-            if (user.Username != request.Username)
+            var user = _userService.GetUserByUsername(loginRequest.Username);
+
+            if (user == null)
             {
                 return BadRequest("User not found.");
             }
 
-            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            if (!VerifyPasswordHash(loginRequest.Password, user.PasswordHash, user.PasswordSalt))
             {
                 return BadRequest("Wrong password.");
             }

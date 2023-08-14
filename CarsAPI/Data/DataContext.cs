@@ -7,5 +7,6 @@ namespace CarsAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options){ }
 
         public DbSet<Car> Cars => Set<Car>();
+        public DbSet<User> Users => Set<User>();
     }
 }

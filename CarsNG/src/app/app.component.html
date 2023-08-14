@@ -1,10 +1,11 @@
 <div class="navbar">
   <div class="logo">Car Sales</div>
   <div class="auth-links">
-    <a routerLink="/add-car">List a car</a>
+    <a routerLink="/add-car" *ngIf="isUserLoggedIn()">List a car</a>
     <a routerLink="/">Home</a>
     <a routerLink="/login">Login</a>
     <a routerLink="/register">Register</a>
+    <button (click)="logout()" *ngIf="isUserLoggedIn()">Logout</button>
   </div>
 </div>
 
