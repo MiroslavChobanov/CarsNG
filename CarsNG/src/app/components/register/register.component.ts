@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -20,11 +21,12 @@ export class RegisterComponent {
   user = new User();
   
 
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router){}
   
   register(user: User) {
     this.authService.register(user).subscribe((response: any) => {
       console.log(response);
+      this.router.navigate(['/login']); // Redirect to the homepage
     });
   }
   
@@ -34,5 +36,4 @@ export class RegisterComponent {
       localStorage.setItem('authToken', token);
     });
   }
-
 }

@@ -1,0 +1,39 @@
+  
+  <table [@fadeIn]>
+    <thead>
+      <th>Make</th>
+      <th>Model</th>
+      <th (click)="sortCars('price')" [class.sorted]="sortColumn === 'price'" class="sortable">Price</th>
+      <th (click)="sortCars('mileage')" [class.sorted]="sortColumn === 'mileage'" class="sortable">Mileage</th>
+      <th>Category</th>
+      <th>Number of Doors</th>
+      <th>Fuel Type</th>
+      <th (click)="sortCars('yearOfCreation')" [class.sorted]="sortColumn === 'yearOfCreation'" class="sortable">Year of Creation</th>
+      <th>Color</th>
+      <th (click)="sortCars('horsepower')" [class.sorted]="sortColumn === 'horsepower'" class="sortable">Horsepower</th>
+      <th>Place</th>
+      <th>Phone</th>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let car of cars">
+        <tr *ngIf="car.make.toLowerCase().startsWith(searchTerm.toLowerCase())">
+          <td class="make">{{ car.make }}</td>
+        <td class="model">{{ car.model }}</td>
+        <td>{{ car.price }}</td>
+        <td>{{ car.mileage }}</td>
+        <td>{{ car.category }}</td>
+        <td>{{ car.numberOfDoors }}</td>
+        <td>{{ car.fuelType }}</td>
+        <td>{{ car.yearOfCreation }}</td>
+        <td>{{ car.color }}</td>
+        <td>{{ car.horsepower }}</td>
+        <td>{{ car.place }}</td>
+        <td>{{ car.phone }}</td>
+        <td><button (click)="editCar(car)">Edit</button></td>
+      </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  
+  
+  <app-edit-car [car]="carToEdit" (carsUpdated)="updateCarList($event)"></app-edit-car>

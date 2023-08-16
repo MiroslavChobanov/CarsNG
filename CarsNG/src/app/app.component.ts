@@ -30,13 +30,12 @@ export class AppComponent {
   }
 
   isUserLoggedIn(): boolean {
-    // Replace this with the actual logic to check if the user is logged in
     return this.authService.isUserLoggedIn();
   }
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']); // Redirect to the login page
+    this.router.navigate(['/login']); 
   }
   
 

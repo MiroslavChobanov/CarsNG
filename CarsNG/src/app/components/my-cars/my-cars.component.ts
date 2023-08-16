@@ -3,23 +3,14 @@ import { CarService } from 'src/app/services/car.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Car } from 'src/app/models/car';
-import { trigger, style, animate, transition } from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('600ms', style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+  selector: 'app-my-cars',
+  templateUrl: './my-cars.component.html',
+  styleUrls: ['./my-cars.component.css']
 })
-export class HomeComponent {
+export class MyCarsComponent {
   title = 'AngApp.UI';
   cars: Car[] = [];
   carToEdit?: Car;
@@ -37,13 +28,6 @@ export class HomeComponent {
     .subscribe((result: Car[]) => (this.cars = result));
 
   }
-  
-  
-
-  navigateToDetails(carId: number) {
-    this.router.navigate(['/car-details', carId]);
-}
-
   updateCarList(cars: Car[]) {
     this.cars = cars;
     console.log(cars);
@@ -67,7 +51,6 @@ export class HomeComponent {
       );
     }
   }
-
   sortCars(property: string): void {
     if (this.sortColumn === property) {
       this.sortDirection = -this.sortDirection;

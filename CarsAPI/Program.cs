@@ -51,7 +51,7 @@ builder.Services.AddCors(options => options.AddPolicy(name: "CarOrigins", policy
 }));
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
-    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
 

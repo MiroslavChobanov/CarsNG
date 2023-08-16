@@ -17,14 +17,16 @@ namespace CarsAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Car>>> GetCars()
         {
-            return Ok(await _context.Cars.ToListAsync());
+            var cars = await _context.Cars.ToListAsync();
+            return Ok(cars);
         }
+
 
         [HttpPost]
         public async Task<ActionResult<List<Car>>> CreateCar(Car car)
         {
-            var userId = GetLoggedInUserId(); // change this
-            car.UserId = userId;
+            //var userId = GetLoggedInUserId(); // change this
+            //car.UserId = userId;
             _context.Cars.Add(car);
             await _context.SaveChangesAsync();
 
@@ -67,7 +69,6 @@ namespace CarsAPI.Controllers
             dbCar.Place = car.Place;
             dbCar.Phone = car.Phone;
             dbCar.Description= car.Description;
-            dbCar.UserId = 1;
 
 
             await _context.SaveChangesAsync();

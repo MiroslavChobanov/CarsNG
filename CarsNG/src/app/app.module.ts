@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
+import { MyCarsComponent } from './components/my-cars/my-cars.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CarDetailsComponent } from './components/car-details/car-details.compon
     RegisterComponent,
     HomeComponent,
     AddCarComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    MyCarsComponent
   ],
   imports: [
     BrowserModule,

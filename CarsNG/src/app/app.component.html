@@ -2,6 +2,7 @@
   <div class="logo">Car Sales</div>
   <div class="auth-links">
     <a routerLink="/add-car" *ngIf="isUserLoggedIn()">List a car</a>
+    <a routerLink="/my-cars" *ngIf="isUserLoggedIn()">My cars</a>
     <a routerLink="/">Home</a>
     <a routerLink="/login" *ngIf="!isUserLoggedIn()">Login</a>
     <a routerLink="/register" *ngIf="!isUserLoggedIn()">Register</a>
