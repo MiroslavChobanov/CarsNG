@@ -22,6 +22,7 @@ export class AuthService {
       responseType: 'text',
     });
   }
+  
 
   public getMe(): Observable<string> {
     return this.http.get('https://localhost:7113/api/Auth', {

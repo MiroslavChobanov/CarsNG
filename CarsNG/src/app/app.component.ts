@@ -3,6 +3,8 @@ import { CarService } from './services/car.service';
 import { Car } from './models/car'
 import { User } from './models/user';
 import { AuthService } from './services/auth.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-root',
@@ -18,7 +20,7 @@ export class AppComponent {
   sortColumn: string = '';
   sortDirection: number = 1;
 
-  constructor(private carService: CarService, private authService: AuthService){}
+  constructor(private carService: CarService, private authService: AuthService, private router: Router){}
 
   ngOnInit() : void {
     this.carService
@@ -34,6 +36,8 @@ export class AppComponent {
 
   logout(): void {
     this.authService.logout();
+    this.router.navigate(['/login']); // Redirect to the login page
   }
+  
 
 }

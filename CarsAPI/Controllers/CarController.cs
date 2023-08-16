@@ -1,6 +1,7 @@
 ﻿using CarsAPI.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace CarsAPI.Controllers
 {
@@ -22,11 +23,26 @@ namespace CarsAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<List<Car>>> CreateCar(Car car)
         {
+            var userId = GetLoggedInUserId(); // change this
+            car.UserId = userId;
             _context.Cars.Add(car);
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Cars.ToListAsync());
         }
+
+        private int GetLoggedInUserId()
+        {
+            var userIdClaim = HttpContext.User.FindFirst("UserId"); // Use your custom claim type here
+
+            if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+            {
+                return userId;
+            }
+
+            throw new ApplicationException("User ID not found or user not authenticated.");
+        }
+
 
         [HttpPut]
         public async Task<ActionResult<List<Car>>> UpdateCar(Car car)

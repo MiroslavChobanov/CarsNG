@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace CarsAPI.Controllers
 {
@@ -47,28 +48,6 @@ namespace CarsAPI.Controllers
             return Ok(createdUser); // Return the newly created user
         }
 
-
-        //[HttpPost("login")]
-        //public async Task<ActionResult<string>> Login(User request)
-        //{
-        //    if (user.Username != request.Username)
-        //    {
-        //        return BadRequest("User not found.");
-        //    }
-
-        //    if (!VerifyPasswordHash(user.PasswordHash, user.PasswordSalt))
-        //    {
-        //        return BadRequest("Wrong password.");
-        //    }
-
-        //    string token = CreateToken(user);
-
-        //    var refreshToken = GenerateRefreshToken();
-        //    SetRefreshToken(refreshToken);
-
-        //    return Ok(token);
-        //}
-
         [HttpPost("login")]
         public async Task<ActionResult<string>> Login([FromBody] UserDto loginRequest)
         {
@@ -84,7 +63,15 @@ namespace CarsAPI.Controllers
                 return BadRequest("Wrong password.");
             }
 
-            string token = CreateToken(user);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, "Admin")
+                // Add other claims as needed
+            };
+
+            string token = CreateToken(claims);
 
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken);
@@ -106,7 +93,14 @@ namespace CarsAPI.Controllers
                 return Unauthorized("Token expired.");
             }
 
-            string token = CreateToken(user);
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, "Admin")
+                // Add other claims as needed
+            };
+            string token = CreateToken(claims);
             var newRefreshToken = GenerateRefreshToken();
             SetRefreshToken(newRefreshToken);
 
@@ -139,15 +133,33 @@ namespace CarsAPI.Controllers
             user.TokenExpires = newRefreshToken.Expires;
         }
 
-        private string CreateToken(User user)
-        {
-            List<Claim> claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, "Admin")
-            };
+        //private string CreateToken(User user)
+        //{
+        //    List<Claim> claims = new List<Claim>
+        //    {
+        //        new Claim(ClaimTypes.Name, user.Username),
+        //        new Claim(ClaimTypes.Role, "Admin"),
+        //        new Claim("UserId", user.Id.ToString())
+        //    };
 
-            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+        //    var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+        //        _configuration.GetSection("AppSettings:Token").Value));
+
+        //    var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+        //    var token = new JwtSecurityToken(
+        //        claims: claims,
+        //        expires: DateTime.Now.AddDays(1),
+        //        signingCredentials: creds);
+
+        //    var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+        //    return jwt;
+        //}
+
+        private string CreateToken(List<Claim> claims)
+        {
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
                 _configuration.GetSection("AppSettings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
@@ -161,6 +173,7 @@ namespace CarsAPI.Controllers
 
             return jwt;
         }
+
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

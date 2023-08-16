@@ -48,7 +48,7 @@ export class AddCarComponent {
         ...this.carForm.value
       };
         this.createCar(updatedCar);
-        console.log(updatedCar);
+        console.log('we created this car ' + updatedCar.userId);
         this.showSuccessMessage = true;
         this.carForm.reset();
     }

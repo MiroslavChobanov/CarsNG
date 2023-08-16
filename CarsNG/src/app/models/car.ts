@@ -14,5 +14,6 @@ export class Car {
     place = "";
     phone = "";
     description = "";
+    userId = 0;
     [key: string]: any;
 }
