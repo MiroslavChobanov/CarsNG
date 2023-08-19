@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCarComponent } from './components/add-car/add-car.component';
 import { CarDetailsComponent } from './components/car-details/car-details.component';
 import { MyCarsComponent } from './components/my-cars/my-cars.component';
+import { EditListingComponent } from './components/edit-listing/edit-listing.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MyCarsComponent } from './components/my-cars/my-cars.component';
     HomeComponent,
     AddCarComponent,
     CarDetailsComponent,
-    MyCarsComponent
+    MyCarsComponent,
+    EditListingComponent
   ],
   imports: [
     BrowserModule,

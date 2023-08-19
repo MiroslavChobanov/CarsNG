@@ -37,8 +37,6 @@ export class HomeComponent {
     .subscribe((result: Car[]) => (this.cars = result));
 
   }
-  
-  
 
   navigateToDetails(carId: number) {
     this.router.navigate(['/car-details', carId]);
@@ -88,6 +86,13 @@ export class HomeComponent {
       } else {
         this.cars.sort((a, b) => b.price - a.price);
       }
+    }
+    if (property === 'yearOfCreation') {
+      if (this.sortOrder === 'asc') {
+        this.cars.sort((a, b) => a.yearOfCreation - b.yearOfCreation);
+      } else {
+        this.cars.sort((a, b) => b.yearOfCreation - a.yearOfCreation);
+      }
     } else {
       // Handle other properties for sorting
     }
@@ -100,7 +105,14 @@ export class HomeComponent {
     } else if (value === 'highestPrice') {
       this.sortOrder = 'desc';
       this.sort('price');
-    } else {
+    } else if (value === 'oldestYear') {
+      this.sortOrder = 'asc';
+      this.sort('yearOfCreation');
+    } else if (value === 'newestYear') {
+      this.sortOrder = 'desc';
+      this.sort('yearOfCreation');
+    }
+    else {
       // Handle default or other sorting options
     }
   }

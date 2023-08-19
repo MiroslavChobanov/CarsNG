@@ -1,4 +1,5 @@
 ﻿using CarsAPI.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -21,12 +22,12 @@ namespace CarsAPI.Controllers
             return Ok(cars);
         }
 
-
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<List<Car>>> CreateCar(Car car)
         {
-            //var userId = GetLoggedInUserId(); // change this
-            //car.UserId = userId;
+            var userId = GetLoggedInUserId();
+            car.UserId = userId;
             _context.Cars.Add(car);
             await _context.SaveChangesAsync();
 
@@ -35,7 +36,7 @@ namespace CarsAPI.Controllers
 
         private int GetLoggedInUserId()
         {
-            var userIdClaim = HttpContext.User.FindFirst("UserId"); // Use your custom claim type here
+            var userIdClaim = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier);
 
             if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
             {
@@ -44,6 +45,7 @@ namespace CarsAPI.Controllers
 
             throw new ApplicationException("User ID not found or user not authenticated.");
         }
+
 
 
         [HttpPut]
@@ -104,5 +106,13 @@ namespace CarsAPI.Controllers
 
             return car;
         }
+
+        [HttpGet("user/{username}")]
+        public async Task<ActionResult<List<Car>>> GetCarsByUsername(string username)
+        {
+            var cars = await _context.Cars.Where(c => c.User.Username == username).ToListAsync();
+            return Ok(cars);
+        }
+
     }
 }

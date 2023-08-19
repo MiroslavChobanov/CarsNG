@@ -35,7 +35,7 @@ export class AddCarComponent {
       yearOfCreation: [0, [Validators.required, Validators.min(1960), Validators.max(new Date().getFullYear())]],
       color: ['', [Validators.minLength(3)]],
       horsepower: [0, [Validators.required, Validators.min(40)]],
-      place: ['', [Validators.minLength(5)]],
+      place: ['', [Validators.minLength(4)]],
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       description: ['', [Validators.required, Validators.minLength(20)]]
     });

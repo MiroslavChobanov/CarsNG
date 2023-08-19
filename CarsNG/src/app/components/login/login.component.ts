@@ -21,16 +21,23 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   user = new User();
+  errorMessage: string | null = null;
 
   constructor(private authService: AuthService, private router: Router){}
   
 
   login(user: User) {
-    this.authService.login(user).subscribe((token: string) => {
-      localStorage.setItem('authToken', token);
-      this.authService.setLoggedInStatus(true);
-      this.router.navigate(['/']); // Redirect to the homepage
-    });
+    this.authService.login(user).subscribe(
+      (token: string) => {
+        localStorage.setItem('authToken', token);
+        this.authService.setLoggedInStatus(true);
+        this.router.navigate(['/']); // Redirect to the homepage
+      },
+      (error) => {
+        if (error.status === 401 || error.status === 400) {
+          this.errorMessage = 'Username or password is invalid.'; // Update the error message
+        }
+      }
+    );
   }
-
 }

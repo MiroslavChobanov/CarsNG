@@ -17,22 +17,16 @@ export class CarDetailsComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const carId = params['id'];
-      console.log('CarDetailsComponent ngOnInit');
-      console.log('carId:', carId);
       this.carService.getCarDetails(carId).subscribe({
         next: (car: Car | undefined) => {
-          console.log('Car details subscription next:', car);
           if (car) {
             this.carDetails = car;
-            console.log('enters the if')
           } else {
             console.log('Car details not found.');
-            // Handle the case when car details are not found
           }
         },
         error: (error) => {
           console.error('Error fetching car details:', error);
-          // Handle the error if needed
         },
         complete: () => {
           console.log('Car details subscription complete.');

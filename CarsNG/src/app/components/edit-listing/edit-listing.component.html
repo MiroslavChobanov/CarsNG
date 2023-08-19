@@ -1,0 +1,140 @@
+<div class="edit-listing-container">
+    <h2>Edit Car Listing</h2>
+    <form [formGroup]="carForm" (ngSubmit)="onSubmit()">
+        <div class="form-fields">
+            <div class="first-column">
+            <div>
+            Make:
+            <input type="text" formControlName="make" placeholder="Make" />
+            <div [@fadeIn] *ngIf="carForm.get('make')?.invalid && (carForm.get('make')?.dirty || carForm.get('make')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('make')?.errors?.['required']">Make is required.</div>
+                <div *ngIf="carForm.get('make')?.errors?.['minlength']">Make must have at least 2 characters.</div>
+              </div>
+          </div>
+          <div>
+            Model:
+            <input type="text" formControlName="model" placeholder="Model" />
+            <div [@fadeIn] *ngIf="carForm.get('model')?.invalid && (carForm.get('model')?.dirty || carForm.get('model')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('model')?.errors?.['required']">Model is required.</div>
+                <div *ngIf="carForm.get('model')?.errors?.['minlength']">Model must have at least 2 characters.</div>
+              </div>
+          </div>
+          <div>
+            Price:
+            <input type="number" formControlName="price" placeholder="Price" />
+            <div [@fadeIn] *ngIf="carForm.get('price')?.invalid && (carForm.get('price')?.dirty || carForm.get('price')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('price')?.errors?.['required']">Price is required.</div>
+                <div *ngIf="carForm.get('price')?.errors?.['min']">Price must be at least 500.</div>
+              </div>
+          </div>
+          <div>
+            Mileage:
+            <input type="number" formControlName="mileage" placeholder="Mileage" />
+            <div [@fadeIn] *ngIf="carForm.get('mileage')?.invalid && (carForm.get('mileage')?.dirty || carForm.get('mileage')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('mileage')?.errors?.['required']">Mileage is required.</div>
+                <div *ngIf="carForm.get('mileage')?.errors?.['min']">Mileage must be at least 1000.</div>
+              </div>
+          </div>
+        </div>
+        <div class="second-column">
+          <div>
+            Category:
+            <select formControlName="category">
+              <option value="">Select a Category</option>
+              <option value="Sedan">Sedan</option>
+              <option value="Hatchback">Hatchback</option>
+              <option value="Wagon">Wagon</option>
+              <option value="SUV">SUV</option>
+              <option value="Coupe">Coupe</option>
+            </select>
+            <div [@fadeIn] *ngIf="carForm.get('category')?.invalid && (carForm.get('category')?.dirty || carForm.get('category')?.touched)" class="error-message">
+              <div *ngIf="carForm.get('category')?.errors?.['required']">Category is required.</div>
+                <div *ngIf="carForm.get('category')?.errors?.['minlength']">Category must have at least 3 characters.</div>
+              </div>
+          </div>
+          <div>
+            Number of Doors:
+            <select formControlName="numberOfDoors">
+              <option value="">Number of doors</option>
+              <option value="2">2(3)</option>
+              <option value="4">4(5)</option>
+            </select>
+            <div [@fadeIn] *ngIf="carForm.get('numberOfDoors')?.invalid && (carForm.get('numberOfDoors')?.dirty || carForm.get('numberOfDoors')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('numberOfDoors')?.errors?.['required']">Number of Doors is required.</div>
+                <div *ngIf="carForm.get('numberOfDoors')?.errors?.['min']">Number of Doors must be at least 2.</div>
+              </div>
+          </div>
+          <div>
+            Fuel Type:
+            <select formControlName="fuelType">
+              <option value="">Fuel type</option>
+              <option value="Petrol">Petrol</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Gas">Gas</option>
+              <option value="Hybrid">Hybrid</option>
+              <option value="Electric">Electric</option>
+            </select>
+            <div [@fadeIn] *ngIf="carForm.get('fuelType')?.invalid && (carForm.get('fuelType')?.dirty || carForm.get('fuelType')?.touched)" class="error-message">
+              <div *ngIf="carForm.get('fuelType')?.errors?.['required']">Fuel Type is required.</div>
+                <div *ngIf="carForm.get('fuelType')?.errors?.['minlength']">Fuel Type must have at least 3 characters.</div>
+              </div>
+          </div>
+          <div>
+            Year of Creation:
+            <input type="number" formControlName="yearOfCreation"/>
+            <div [@fadeIn] *ngIf="carForm.get('yearOfCreation')?.invalid && (carForm.get('yearOfCreation')?.dirty || carForm.get('yearOfCreation')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('yearOfCreation')?.errors?.['required']">Year of Creation is required.</div>
+                <div *ngIf="carForm.get('yearOfCreation')?.errors?.['min']">Year of Creation must be at least 1960.</div>
+                <div *ngIf="carForm.get('yearOfCreation')?.errors?.['max']">Year of Creation cannot be in the future.</div>
+              </div>
+          </div>
+        </div>
+        <div class="third-column">
+          <div>
+            Color:
+            <input type="text" formControlName="color" placeholder="Color" />
+            <div [@fadeIn] *ngIf="carForm.get('color')?.invalid && (carForm.get('color')?.dirty || carForm.get('color')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('color')?.errors?.['minlength']">Color must have at least 3 characters.</div>
+              </div>
+          </div>
+          <div>
+            Horsepower:
+            <input type="number" formControlName="horsepower" placeholder="Horsepower" />
+            <div [@fadeIn] *ngIf="carForm.get('horsepower')?.invalid && (carForm.get('horsepower')?.dirty || carForm.get('horsepower')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('horsepower')?.errors?.['required']">Horsepower is required.</div>
+                <div *ngIf="carForm.get('horsepower')?.errors?.['min']">Horsepower must be at least 40.</div>
+              </div>
+          </div>
+          <div>
+            Place:
+            <input type="text" formControlName="place" placeholder="Place" />
+            <div [@fadeIn] *ngIf="carForm.get('place')?.invalid && (carForm.get('place')?.dirty || carForm.get('place')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('place')?.errors?.['required']">Place is required.</div>
+                <div *ngIf="carForm.get('place')?.errors?.['minlength']">Place must have at least 1 character.</div>
+              </div>
+          </div>
+          <div>
+          Phone:
+            <input type="text" formControlName="phone" placeholder="Phone" />
+            <div [@fadeIn] *ngIf="carForm.get('phone')?.invalid && (carForm.get('phone')?.dirty || carForm.get('phone')?.touched)" class="error-message">
+                <div *ngIf="carForm.get('phone')?.errors?.['required']">Phone is required.</div>
+                <div *ngIf="carForm.get('phone')?.errors?.['minlength']">Phone must have at least 10 character.</div>
+              </div>
+              </div>
+              </div>
+              <div class="forth-column">
+                <div class="description-field">
+                    Description:
+                      <textarea  formControlName="description" rows="6"></textarea>
+                      <div [@fadeIn] *ngIf="carForm.get('description')?.invalid && (carForm.get('description')?.dirty || carForm.get('description')?.touched)" class="error-message">
+                          <div *ngIf="carForm.get('description')?.errors?.['required']">Description is required.</div>
+                          <div *ngIf="carForm.get('description')?.errors?.['minlength']">Description must have at least 20 characters.</div>
+                        </div>
+                        </div>
+              </div>
+            </div>     
+          <button type="submit" [disabled]="carForm.invalid && (carForm.dirty || carForm.touched)">Save</button>
+          <button type="button" (click)="deleteCar(car)" *ngIf="car?.id" class="delete-btn">Delete</button>
+    </form>
+  </div>
+  

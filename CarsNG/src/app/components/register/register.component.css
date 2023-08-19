@@ -56,3 +56,13 @@
     margin-top: 25px;
   }
   
+  button[type="submit"]:disabled {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+  }
+
+  .error-msg{
+    color: red;
+    margin-top: 5%;
+    font-size: 18px;
+  }

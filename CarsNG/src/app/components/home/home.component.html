@@ -6,6 +6,8 @@
           <option value="default">Default</option>
           <option value="lowestPrice">Lowest Price</option>
           <option value="highestPrice">Highest Price</option>
+          <option value="oldestYear">Oldest year</option>
+          <option value="newestYear">Newest year</option>
         </select>
       </div>
       
@@ -17,14 +19,8 @@
       <th>Model</th>
       <th (click)="sortCars('price')" [class.sorted]="sortColumn === 'price'" class="sortable">Price</th>
       <th (click)="sortCars('mileage')" [class.sorted]="sortColumn === 'mileage'" class="sortable">Mileage</th>
-      <th>Category</th>
-      <th>Number of Doors</th>
       <th>Fuel Type</th>
       <th (click)="sortCars('yearOfCreation')" [class.sorted]="sortColumn === 'yearOfCreation'" class="sortable">Year of Creation</th>
-      <th>Color</th>
-      <th (click)="sortCars('horsepower')" [class.sorted]="sortColumn === 'horsepower'" class="sortable">Horsepower</th>
-      <th>Place</th>
-      <th>Phone</th>
     </thead>
     <tbody>
       <ng-container *ngFor="let car of cars">
@@ -33,15 +29,8 @@
         <td class="model">{{ car.model }}</td>
         <td>{{ car.price }}</td>
         <td>{{ car.mileage }}</td>
-        <td>{{ car.category }}</td>
-        <td>{{ car.numberOfDoors }}</td>
         <td>{{ car.fuelType }}</td>
         <td>{{ car.yearOfCreation }}</td>
-        <td>{{ car.color }}</td>
-        <td>{{ car.horsepower }}</td>
-        <td>{{ car.place }}</td>
-        <td>{{ car.phone }}</td>
-        <td><button (click)="editCar(car)">Edit</button></td>
         <td>
           <button *ngIf="car.id !== undefined" (click)="navigateToDetails(car.id)">Details</button>
         </td>        

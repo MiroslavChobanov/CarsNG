@@ -44,6 +44,7 @@
           <option value="Hatchback">Hatchback</option>
           <option value="Wagon">Wagon</option>
           <option value="SUV">SUV</option>
+          <option value="Coupe">Coupe</option>
         </select>
         <div [@fadeIn] *ngIf="carForm.get('category')?.invalid && (carForm.get('category')?.dirty || carForm.get('category')?.touched)" class="error-message">
           <div *ngIf="carForm.get('category')?.errors?.['required']">Category is required.</div>
@@ -116,7 +117,7 @@
         <input type="text" formControlName="phone" placeholder="Phone" />
         <div [@fadeIn] *ngIf="carForm.get('phone')?.invalid && (carForm.get('phone')?.dirty || carForm.get('phone')?.touched)" class="error-message">
             <div *ngIf="carForm.get('phone')?.errors?.['required']">Phone is required.</div>
-            <div *ngIf="carForm.get('phone')?.errors?.['minlength']">Phone must have at least 1 character.</div>
+            <div *ngIf="carForm.get('phone')?.errors?.['minlength']">Phone must have at least 10 character.</div>
           </div>
           </div>
           </div>
@@ -133,7 +134,7 @@
         </div>
           
                 
-      <button type="submit" [disabled]="carForm.invalid && (carForm.dirty || carForm.touched)">Save</button>
+      <button type="submit" [disabled]="carForm.invalid && (carForm.dirty || carForm.touched)">List</button>
       <div *ngIf="showSuccessMessage" class="success-message">
         Car listing added successfully.
     </div>

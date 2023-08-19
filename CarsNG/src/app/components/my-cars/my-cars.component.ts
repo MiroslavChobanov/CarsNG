@@ -22,12 +22,26 @@ export class MyCarsComponent {
 
   constructor(private carService: CarService, private authService: AuthService, private router: Router){}
 
-  ngOnInit() : void {
-    this.carService
-    .getCars()
-    .subscribe((result: Car[]) => (this.cars = result));
-
+  ngOnInit(): void {
+    const currentUsername = this.authService.getCurrentUserName();
+    console.log('Current Username: ' + currentUsername);
+    if (currentUsername !== null) {
+      this.carService.getCarsByUserName(currentUsername).subscribe(
+        (cars: Car[]) => {
+          this.cars = cars;
+        },
+        (error) => {
+          console.error('Error fetching cars:', error);
+        }
+      );
+    } else {
+      // Handle the case when currentUsername is null
+      console.warn('Current username is null.');
+      this.cars = []; // Or any other appropriate action
+    }
   }
+  
+  
   updateCarList(cars: Car[]) {
     this.cars = cars;
     console.log(cars);
@@ -87,4 +101,8 @@ export class MyCarsComponent {
       // Handle default or other sorting options
     }
   }
+
+  navigateToEdit(carId: number) {
+    this.router.navigate(['/edit-listing', carId]);
+}
 }

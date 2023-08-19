@@ -1,0 +1,108 @@
+.edit-listing-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ededed;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+  }
+  
+  .edit-listing-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form-fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px; 
+  }
+  
+  .first-column,
+  .second-column,
+  .third-column,
+  .forth-column {
+    flex: 1;
+  }
+  
+  .form-fields > div {
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 20px;
+    margin-top: 5px;
+  }
+  
+  button[type="submit"] {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #dfad51;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    width: 15%;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #ff8c00;
+  }
+
+  .description-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .description-field textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    vertical-align: top; /* Align text to the top */
+    overflow-y: auto; /* Add scroll bar if content exceeds the height */
+  }
+
+  button[type="submit"]:disabled {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+  }
+  
+  
+  .forth-column{
+    margin-right: 5%;
+  }
+
+  .first-column{
+    margin-left: 3%;
+  }
+  .delete-btn{
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #da5046;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    width: 15%;
+  }

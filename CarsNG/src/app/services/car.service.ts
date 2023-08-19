@@ -59,8 +59,14 @@ export class CarService {
       })
     );
   }
-  
 
+  getCarsByUserName(username: string | null): Observable<Car[]> {
+    if (username !== null) {
+      return this.http.get<Car[]>(`${environment.apiUrl}/car/user/${username}`);
+    } else {
+      return of([]); 
+    }
+  }
   
   
 }

@@ -1,5 +1,7 @@
-  
-  <table [@fadeIn]>
+  <div>
+    <h2>My listings</h2>
+  </div>
+  <table>
     <thead>
       <th>Make</th>
       <th>Model</th>
@@ -29,11 +31,11 @@
         <td>{{ car.horsepower }}</td>
         <td>{{ car.place }}</td>
         <td>{{ car.phone }}</td>
-        <td><button (click)="editCar(car)">Edit</button></td>
+        <button *ngIf="car.id !== undefined" (click)="navigateToEdit(car.id)">Edit</button>
       </tr>
       </ng-container>
     </tbody>
   </table>
   
-  
-  <app-edit-car [car]="carToEdit" (carsUpdated)="updateCarList($event)"></app-edit-car>
+<!--   
+  <app-edit-car [car]="carToEdit" (carsUpdated)="updateCarList($event)"></app-edit-car> -->

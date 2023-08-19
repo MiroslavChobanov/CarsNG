@@ -73,6 +73,11 @@ namespace CarsAPI.Controllers
 
             string token = CreateToken(claims);
 
+            foreach (var claim in claims)
+            {
+                Console.WriteLine($"Claim Type: {claim.Type}, Claim Value: {claim.Value}");
+            }
+
             var refreshToken = GenerateRefreshToken();
             SetRefreshToken(refreshToken);
 
